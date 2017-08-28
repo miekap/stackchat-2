@@ -3,7 +3,7 @@ import {postChannel, writeChannel} from '../store'
 import { connect } from 'react-redux'
 
 function NewChannelEntry (props) {
-  console.log('what is props ', props)
+
   return (
     <form onSubmit={(evt) => props.handleSubmit(props.newChannelEntry, evt)} >
       <div className="form-group">

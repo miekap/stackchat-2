@@ -19,7 +19,7 @@ export default class Main extends Component {
     return (
       <div>
         <Sidebar />
-        <Navbar />
+        <Route path="/channels/:channelId" component={Navbar} />
         <main>
           <Switch>
             <Route path="/new-channel" component={NewChannelEntry} />
