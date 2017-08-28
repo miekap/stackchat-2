@@ -9,7 +9,7 @@ function Navbar(props, ownProps) {
 
   return (
     <nav>
-      <h3>{props.channels.length ? props.channels.filter(channel => channel.id == channelId)[0].name : 'Create Channel'}</h3>
+      <h3>{(props.channels.length && channelId) ? props.channels.filter(channel => channel.id == channelId)[0].name : 'Create Channel'}</h3>
       <NameEntry />
     </nav>
   );
