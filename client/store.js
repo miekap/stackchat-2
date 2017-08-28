@@ -102,7 +102,7 @@ export function fetchChannels() {
   }
 }
 
-export function postChannel(channel) {
+export function postChannel(channel, history) {
 
   return function thunk(dispatch) {
     return axios.post('/api/channels', channel)
@@ -111,6 +111,7 @@ export function postChannel(channel) {
         const action = getChannel(newChannel);
         dispatch(action);
         socket.emit('new-channel', newChannel);
+        history.push(`/channels/${newChannel.id}`)
       });
   }
 
@@ -179,13 +180,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         newChannelEntry: action.channelName
-      }  
+      }
 
     case GET_CHANNEL:
       return {
         ...state,
         channels: [...state.channels, action.channel]
-      }    
+      }
 
     default:
       return state;

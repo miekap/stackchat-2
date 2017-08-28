@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 
 function NewChannelEntry (props) {
   return (
-    <form onSubmit = {props.handleSubmit} >
+    <form onSubmit={props.handleSubmit} >
       <div className="form-group">
         <label htmlFor="name">Create a Channel</label>
-        <input value={props.newChannelEntry} onChange = {props.handleChange} className="form-control" type="text" name="channelName" placeholder="Enter channel name" />
+        <input value={props.newChannelEntry} onChange={props.handleChange} className="form-control" type="text" name="channelName" placeholder="Enter channel name" />
       </div>
       <div className="form-group">
         <button type="submit" className="btn btn-default">Create Channel</button>
@@ -23,20 +23,18 @@ const mapStateToProps = function (state) {
   };
 }
 
-const mapDispatchToProps = function (dispatch){
-  return{
+const mapDispatchToProps = function (dispatch, ownProps){
+  return {
     handleChange: evt => dispatch(writeChannel(evt.target.value)),
 
     handleSubmit: evt => {
       evt.preventDefault()
-      //const name = evt.target.channelName.value
-      dispatch(postChannel({name: props.newChannelEntry}))
+      dispatch(postChannel({name: evt.target.channelName.value}, ownProps.history))
+      console.log(ownProps)
       dispatch(writeChannel(''))
     }
   }
 }
-
-
 
 const connectedChannelEntry = connect(mapStateToProps, mapDispatchToProps)(NewChannelEntry)
 
