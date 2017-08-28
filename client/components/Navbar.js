@@ -7,9 +7,13 @@ function Navbar(props, ownProps) {
 
   const channelId = Number(props.match.params.channelId);
   let title = '';
-    if (props.channels.length && channelId) title = props.channels.filter(channel => channel.id == channelId)[0].name;
-    else if (!props.newChannelEntry && !channelId) title = 'Create Channel';
-    else if (props.newChannelEntry && !channelId) title = props.newChannelEntry;
+    if (channelId) {
+      if (props.channels.length) title = props.channels.filter(channel => channel.id == channelId)[0].name;
+    }
+    else {
+      if (props.newChannelEntry) title = props.newChannelEntry;
+      else title = 'Create Channel';
+    }
 
   return (
     <nav>
